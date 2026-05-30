@@ -62,7 +62,6 @@
                     </label>
                 </fieldset>
 
-                <div id="mensaje"></div>
                 <button type="submit">Registrar Información</button>
             </form>
         </section>
@@ -83,6 +82,7 @@
         <p>&copy; 2026 Sistema de Dashboard del grupo #15. Todos los derechos reservados.</p>
     </footer>
 
-<script src="../js/script.js"></script>
+<script src="js/script.js"></script></script>
+
 </body>
 </html>
