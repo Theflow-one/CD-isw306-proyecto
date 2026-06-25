@@ -1,0 +1,6 @@
+@backendISW306_HostAddress = http://localhost:5164
+
+GET {{backendISW306_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
