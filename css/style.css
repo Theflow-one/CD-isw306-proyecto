@@ -1,71 +1,41 @@
-body {
+body{
     font-family: Arial, sans-serif;
-    background-color: #ffffff;
-}
-
-/* Encabezado */
-header {
+    margin: 0;
+    padding: 0;
     background-color: #0b1838;
     color: white;
     text-align: center;
-    
+}
+
+header {
+    background-color: #F68121;
     padding: 20px;
 }
 
-/* Barra de navegación */
-.navbar {
-    background-color: #F68121 !important;
+nav, main, aside, footer {
+    padding: 20px;
+    margin: 10px;
 }
 
-.navbar .nav-link {
-    color: white !important;
-    font-weight: bold;
-}
+@media (max-width: 768px) {
+    body {
+        background-color: #142850;
+    }
 
-.navbar .nav-link:hover {
-    color: #0b1838 !important;
+    nav, main, aside, footer {
+        margin: 5px;
+        padding: 10px;
+    }
 }
-
-/* Tarjetas */
-.card {
-    border-radius: 10px;
-}
-
-/* Botón */
-.btn-primary {
-    background-color: #F68121;
-    border-color: #F68121;
-}
-
-.btn-primary:hover {
-    background-color: #d96d12;
-    border-color: #d96d12;
-}
-
-/* Footer */
-footer {
-    background-color: #0b1838;
-    color: white;
-    text-align: center;
-}
-
-/* Mensajes */
 .error {
-    color: red;
+    color: #ff4d4d;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
 .exito {
-    color: green;
+    color: #00cc66;
     font-weight: bold;
     margin-bottom: 10px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    header,
-    footer {
-        padding: 15px;
-    }
+    
 }

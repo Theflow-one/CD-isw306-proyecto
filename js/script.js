@@ -1,45 +1,123 @@
+const API = "https://localhost:7114/api/Usuarios";
 
-const formulario = document.querySelector("form");
-const mensaje = document.getElementById("mensaje");
+const formulario = document.getElementById("formUsuario");
+const tabla = document.getElementById("tablaUsuarios");
 
-formulario.addEventListener("submit", function (e) {
+
+window.onload = function () {
+
+    if (!sessionStorage.getItem("usuario")) {
+        window.location.href = "index.html";
+        return;
+    }
+
+    cargarUsuarios();
+};
+
+// GET
+async function cargarUsuarios() {
+    const res = await fetch(API);
+    const data = await res.json();
+
+    tabla.innerHTML = "";
+
+    data.forEach(u => {
+        tabla.innerHTML += `
+        <tr>
+            <td>${u.id}</td>
+            <td>${u.nombre}</td>
+            <td>${u.correo}</td>
+            <td>
+                <button class="btn btn-warning btn-sm" onclick="editarUsuario(${u.id})">
+                    Editar
+
+                </button>
+
+                <button class="btn btn-danger btn-sm" onclick="eliminarUsuario(${u.id})">
+                    Eliminar
+
+                </button>
+
+            </td>
+        </tr>`;
+    });
+
+}
+
+// POST / PUT
+formulario.addEventListener("submit", async function (e) {
+
     e.preventDefault();
 
-    const nombre = document.getElementById("nombre").value.trim();
-    const correo = document.getElementById("correo").value.trim();
-
-    mensaje.classList.remove("error", "exito");
-
-    if (nombre === "") {
-        mensaje.innerHTML = "El nombre no puede estar vacío";
-        mensaje.classList.add("error");
-        return;
-    }
-
-    if (nombre.length < 3) {
-        mensaje.innerHTML = "El nombre debe tener al menos 3 caracteres";
-        mensaje.classList.add("error");
-        return;
-    }
-
-    const expresionCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!expresionCorreo.test(correo)) {
-        mensaje.innerHTML = "Ingrese un correo electrónico válido";
-        mensaje.classList.add("error");
-        return;
-    }
+    const id = document.getElementById("id").value;
 
     const usuario = {
-        nombre: nombre,
-        correo: correo
+        
+
+        nombre: document.getElementById("nombre").value,
+
+        correo: document.getElementById("correo").value,
+        contrasena: document.getElementById("contrasena").value
     };
 
-    localStorage.setItem("usuario", JSON.stringify(usuario));
+    if (id === "") {
 
-    mensaje.innerHTML = "Datos registrados correctamente";
-    mensaje.classList.add("exito");
+        await fetch(API, {
+
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(usuario)
+
+        });
+
+    } else {
+
+        await fetch(`${API}/${id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id, ...usuario })
+        });
+
+    }
 
     formulario.reset();
+
+    document.getElementById("id").value = "";
+
+    cargarUsuarios();
+
 });
-//Proyecto ISW-306 - Etapa 2 Interactividad
+
+// EDIT
+async function editarUsuario(id) {
+    const res = await fetch(`${API}/${id}`);
+    const u = await res.json();
+
+    document.getElementById("id").value = u.id;
+    document.getElementById("nombre").value = u.nombre;
+    document.getElementById("correo").value = u.correo;
+    document.getElementById("contrasena").value = u.contrasena;
+}
+
+// DELETE
+async function eliminarUsuario(id) {
+    if (!confirm("¿Eliminar usuario?")) return;
+
+    await fetch(`${API}/${id}`, {
+        method: "DELETE"
+
+    });
+
+
+    cargarUsuarios();
+
+}
+
+// LOGOUT
+function cerrarSesion() {
+
+    sessionStorage.removeItem("usuario");
+
+    window.location.href = "index.html";
+
+}
