@@ -2,115 +2,114 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Principal</title>
-    <link rel="stylesheet" href="css/style.css">
- </head>
 
-<body>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <header>
-        <h1>Panel de Entrada</h1>
-        <p>Bienvenido al sistema de gestión</p>
-    </header>
+<title>Dashboard</title>
 
-    <nav>
-        <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#registro">Registro</a></li>
-            <li><a href="#reportes">Reportes</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <section id="inicio">
-            <h2>Resumen de Actividades</h2>
-
-            <article>
-                <h3>Usuarios Activos</h3>
-                <p>1,240 usuarios en las últimas 24 horas.</p>
-            </article>
-
-            <article>
-                <h3>Rendimiento del Sistema</h3>
-                <p>Operando al 99.9% de capacidad.</p>
-            </article>
-        </section>
-
-        <hr>
-
-        <section id="registro">
-            <h2>Formulario de Registro de Datos</h2>
-
-            <form id="formulario" method="post">
-
-                <fieldset>
-                    <legend>Información personal</legend>
-
-                    <label for="nombre">Nombre Completo:</label>
-                    <input type="text"
-                           id="nombre"
-                           name="nombre"
-                           required
-                           placeholder="A. Jáquez">
-
-                    <label for="correo">Correo Electrónico:</label>
-                    <input type="email"
-                           id="correo"
-                           name="correo"
-                           required
-                           placeholder="A.Jaquez@uapa.com">
-
-                    <label for="rol">Rol del Usuario:</label>
-                    <select id="rol" name="rol">
-                        <option value="usuario">Usuario Estándar</option>
-                        <option value="admin">Administrador</option>
-                    </select>
-
-                </fieldset>
-
-                <fieldset>
-                    <legend>Preferencias</legend>
-
-                    <label>
-                        <input type="checkbox"
-                               name="notificaciones"
-                               value="si"
-                               checked>
-                        Recibir notificaciones por correo
-                    </label>
-
-                </fieldset>
-
-                <div id="mensaje"></div>
-
-                <button type="submit">
-                    Registrar Información
-                </button>
-
-            </form>
-        </section>
-
-    </main>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
 
-    <aside>
-        <h2>Enlaces de Interés</h2>
+</head>
 
-        <ul>
-            <li><a href="#ayuda">Documentación de la API</a></li>
-            <li><a href="#soporte">Soporte Técnico</a></li>
-        </ul>
-    </aside>
-<!-- Pie de página con datos del Grupo -->
-    <footer>
-        <p>&copy; 2026 Sistema de Dashboard del grupo #15. Todos los derechos reservados.</p>
-    </footer>
+<body class="bg-light">
 
-    <script src="js/script.js"></script>
+<div class="container mt-5">
+
+<div class="d-flex justify-content-between">
+
+<h2>Gestión de Usuarios</h2>
+
+<button class="btn btn-danger" onclick="cerrarSesion()">
+Cerrar sesión
+</button>
+
+</div>
+
+<hr>
+
+<form id="formUsuario">
+
+<input type="hidden" id="id">
+
+<div class="row">
+
+<div class="col-md-4">
+
+<input
+type="text"
+class="form-control"
+id="nombre"
+placeholder="Nombre"
+required>
+
+</div>
+
+<div class="col-md-4">
+
+<input
+type="email"
+class="form-control"
+id="correo"
+placeholder="Correo"
+required>
+
+</div>
+
+<div class="col-md-4">
+
+<input
+type="password"
+class="form-control"
+id="contrasena"
+placeholder="Contraseña"
+required>
+
+</div>
+
+</div>
+
+<button class="btn btn-primary mt-3">
+Guardar Usuario
+</button>
+
+</form>
+
+<hr>
+
+<table class="table table-bordered table-striped">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>ID</th>
+
+<th>Nombre</th>
+
+<th>Correo</th>
+
+<th>Acciones</th>
+
+</tr>
+
+</thead>
+
+<tbody id="tablaUsuarios">
+
+</tbody>
+
+</table>
+
+</div>
+
+
+
+<script src="js/script.js"></script>
 
 </body>
+
 
 
 </html>

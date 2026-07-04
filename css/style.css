@@ -1,4 +1,4 @@
-body {
+body{
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -28,13 +28,14 @@ nav, main, aside, footer {
     }
 }
 .error {
-    color: red;
+    color: #ff4d4d;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
 .exito {
-    color: green;
+    color: #00cc66;
     font-weight: bold;
     margin-bottom: 10px;
+    
 }
